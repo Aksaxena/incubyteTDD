@@ -10,4 +10,14 @@ function add(numbers) {
         delimiter = new RegExp(customDelimiterMatch[1]);
         numbers = numbers.slice(customDelimiterMatch[0].length);
     }
+    //convert string numbers in number
+    let numArray = numbers.split(delimiter).map(Number);
+    //find negativer numbers 
+    let negatives = numArray.filter(num => num < 0);
+    //if found negative numbers then throw a error msg
+    if (negatives.length) {
+        throw new Error(`negative numbers not allowed ${negatives.join(",")}`);
+    }
+    //findally return sum of numbers here
+    return numArray.reduce((sum, num) => sum + num, 0);
 }
